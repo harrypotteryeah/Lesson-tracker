@@ -5,15 +5,20 @@ import win32con
 import win32gui
 import datetime
 
-ders_listesi=[("","tde","mat","mat","cls"),("","","mat","mat","kmy","kmy","alm","alm"),("kmy","")]
-ders_saatleri=[(8,15),(9,5),(9,55),(10,45),(11,35),(13,5),(13,55),(14,45)]
-cuma_ders_saatleri=[(8,15),(9,5),(9,55),(10,45),(11,35),(13,5),(13,55),(14,45)]
+ders_listesi=[("","tde","mat","mat","cls"),
+              ("","","mat","mat","kmy","kmy","alm","alm"),
+              ("kmy","byj","tde","tde","din","din","cls"),
+              ("ing","ing","fzk","fzk","tde","tde","cls"),
+              ("","","byj","byj","mat","mat","ing","ing")]
+
+ders_saatleri=[(8,15),(9,5),(9,55),(10,45),(11,35),(13,0),(13,50),(14,40)]
+cuma_ders_saatleri=[(8,15),(9,5),(9,55),(10,45),(11,35),(13,15),(14,5),(14,55)]
 now=datetime.datetime.now()
 suanki_ders=None
 with open("son_ders.txt","r+")as f:
     son_ders=f.read()
 
-saatler=ders_saatleri if now.day!=5 else cuma_ders_saatleri
+saatler=ders_saatleri if now.day!=4 else cuma_ders_saatleri
 
 for i,zaman in enumerate(saatler):
     if now.hour == zaman[0]:
